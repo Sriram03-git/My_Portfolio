@@ -22,13 +22,15 @@
                 <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition duration-300">Projects</a>
                 <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition duration-300">Contact</a>
                 
-                <i data-lucide="sun" class="w-6 h-6 text-yellow-400 dark:hidden transition duration-300"></i>
-                <i data-lucide="moon" class="w-6 h-6 text-gray-400 hidden dark:block transition duration-300"></i>
+                <button id="theme-toggle" class="p-1 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle dark mode">
+                    <i data-lucide="moon" id="toggle-icon" class="w-6 h-6"></i>
+                </button>
             </div>
             
             <div class="flex items-center space-x-2 sm:hidden">
-                 <i data-lucide="sun" class="w-6 h-6 text-yellow-400 dark:hidden transition duration-300"></i>
-                <i data-lucide="moon" class="w-6 h-6 text-gray-400 hidden dark:block transition duration-300"></i>
+                 <button id="theme-toggle-mobile" class="p-1 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300" aria-label="Toggle dark mode">
+                    <i data-lucide="moon" id="toggle-icon-mobile" class="w-6 h-6"></i>
+                </button>
                 <button id="menu-button" class="p-2 rounded-md hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
                     <i data-lucide="menu" class="w-6 h-6 text-blue-600"></i>
                 </button>
