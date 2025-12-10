@@ -39,10 +39,10 @@
         </nav>
          <div id="mobile-menu" class="hidden sm:hidden absolute w-full bg-white dark:bg-slate-800 shadow-xl transition-all duration-300">
             <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-                <a href="#about" class="block py-2 text-lg text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-slate-700 rounded-md transition duration-200">About</a>
-                <a href="#skills" class="block py-2 text-lg text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-slate-700 rounded-md transition duration-200">Skills</a>
-                <a href="#projects" class="block py-2 text-lg text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-slate-700 rounded-md transition duration-200">Projects</a>
-                <a href="#contact" class="block py-2 text-lg text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-slate-700 rounded-md transition duration-200">Contact</a>
+                <a href="#about" class="mobile-nav-link">About</a>
+                <a href="#skills" class="mobile-nav-link">Skills</a>
+                <a href="#projects" class="mobile-nav-link">Projects</a>
+                <a href="#contact" class="mobile-nav-link">Contact</a>
             </div>
         </div>
     </header>
@@ -53,7 +53,7 @@
                 <div class="hero-content opacity-0 transform translate-y-8 transition-all duration-1000 ease-out">
                     <div class="mb-6">
                         <img
-                            src="media/profile.png"
+                            src="profile.png" 
                             alt="Sriram Thiruselvam Profile Photo"
                             class="w-44 h-44 object-cover rounded-full border-4 border-white dark:border-slate-800 shadow-2xl ring-4 ring-orange-500 mx-auto transition duration-500 transform hover:scale-105"
                             onerror="this.onerror=null; this.src='https://placehold.co/176x176/f97316/ffffff?text=SR';"
@@ -122,30 +122,30 @@
 
         <section id="skills" class="py-20 sm:py-32 bg-gray-50 dark:bg-slate-800 transition-colors duration-500 border-t border-b border-gray-200 dark:border-slate-700">
             <div class="container mx-auto px-4 max-w-6xl">
-                <h2 class="section-title text-4xl font-extrabold text-gray-900 dark:text-white mb-16 mx-auto text-center">
+                 <h2 class="section-title text-4xl font-extrabold text-gray-900 dark:text-white mb-16 mx-auto text-center">
                     Core Technical Skills
                     <span class="block h-1 w-20 mx-auto mt-2 bg-orange-600 rounded"></span>
                 </h2>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
                     <div class="skill-card p-6 bg-white dark:bg-slate-700 rounded-xl text-center shadow-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-orange-500/30">
-                        <i data-lucide="coffee" class="skill-icon w-12 h-12 mx-auto text-red-600 mb-3"></i>
+                        <i data-lucide="coffee" class="skill-icon w-12 h-12 mx-auto text-red-600 dark:text-red-400 mb-3"></i>
                         <p class="font-bold text-lg text-gray-900 dark:text-white mt-2">Java (Core)</p>
                     </div>
                     <div class="skill-card p-6 bg-white dark:bg-slate-700 rounded-xl text-center shadow-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-orange-500/30">
-                        <i data-lucide="leaf" class="skill-icon w-12 h-12 mx-auto text-green-600 mb-3"></i>
+                        <i data-lucide="leaf" class="skill-icon w-12 h-12 mx-auto text-green-600 dark:text-green-400 mb-3"></i>
                         <p class="font-bold text-lg text-gray-900 dark:text-white mt-2">Spring Boot</p>
                     </div>
                     <div class="skill-card p-6 bg-white dark:bg-slate-700 rounded-xl text-center shadow-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-orange-500/30">
-                        <i data-lucide="database" class="skill-icon w-12 h-12 mx-auto text-blue-600 mb-3"></i>
+                        <i data-lucide="database" class="skill-icon w-12 h-12 mx-auto text-blue-600 dark:text-blue-400 mb-3"></i>
                         <p class="font-bold text-lg text-gray-900 dark:text-white mt-2">PostgreSQL</p>
                     </div>
                     <div class="skill-card p-6 bg-white dark:bg-slate-700 rounded-xl text-center shadow-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-orange-500/30">
-                        <i data-lucide="code" class="skill-icon w-12 h-12 mx-auto text-orange-500 mb-3"></i>
+                        <i data-lucide="code" class="skill-icon w-12 h-12 mx-auto text-orange-500 dark:text-orange-400 mb-3"></i>
                         <p class="font-bold text-lg text-gray-900 dark:text-white mt-2">HTML5 & CSS</p>
                     </div>
                     <div class="skill-card p-6 bg-white dark:bg-slate-700 rounded-xl text-center shadow-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-orange-500/30">
-                        <i data-lucide="square-code" class="skill-icon w-12 h-12 mx-auto text-yellow-500 mb-3"></i>
+                        <i data-lucide="square-code" class="skill-icon w-12 h-12 mx-auto text-yellow-500 dark:text-yellow-400 mb-3"></i>
                         <p class="font-bold text-lg text-gray-900 dark:text-white mt-2">JavaScript</p>
                     </div>
                     <div class="skill-card p-6 bg-white dark:bg-slate-700 rounded-xl text-center shadow-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-orange-500/30">
@@ -161,14 +161,13 @@
         </section>
 
         <section id="projects" class="py-20 sm:py-32 bg-white dark:bg-slate-900 transition-colors duration-500 border-b border-gray-200 dark:border-slate-800">
-            <div class="container mx-auto px-4 max-w-5xl">
+             <div class="container mx-auto px-4 max-w-5xl">
                 <h2 class="section-title text-4xl font-extrabold text-gray-900 dark:text-white mb-16 mx-auto text-center">
                     Featured Projects
                     <span class="block h-1 w-20 mx-auto mt-2 bg-cyan-500 rounded"></span>
                 </h2>
 
                 <div class="space-y-16">
-                    
                     <div class="project-card bg-gray-50 dark:bg-slate-800 rounded-xl shadow-2xl p-8 md:p-12 border-l-4 border-orange-600 transition-all duration-500 transform hover:translate-y-[-4px] hover:shadow-orange-500/40">
                         <div class="md:flex md:space-x-8">
                             <div class="flex-shrink-0 mb-6 md:mb-0">
@@ -216,7 +215,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
