@@ -1,101 +1,118 @@
-/* Custom Styles & Font Setup - UPDATED TO DEEP PURPLE/NEON TEAL */
+/*
+ * Sriram Thiruselvam Portfolio - Solar Flare Theme
+ * Colors: Bright Orange (#f97316) and Deep Cyan (#06b6d4)
+ */
+
+/* 1. Base Styles & Global Utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Font Import: Inter */
 :root {
-    --primary-color: #14b8a6; /* Neon Teal 500 (Accent) */
-    --secondary-color: #7c3aed; /* Deep Violet 600 (Secondary Accent) */
-    --background-dark: #0b0a16; /* Very Dark Custom Background */
-    --background-light: #f8fafc; /* Slate 50 */
+    --font-sans: 'Inter', sans-serif;
+    --color-primary: #f97316; /* Orange 600 */
+    --color-secondary: #06b6d4; /* Cyan 500 */
 }
 
-/* Apply smooth transitions to body elements for theme change */
-body {
-    font-family: 'Inter', sans-serif;
-    color: #334155; /* Default Slate 700 */
-    background-color: var(--background-light);
+html {
     scroll-behavior: smooth;
-    transition: all 0.5s ease-in-out; /* Global transition for theme changes */
 }
 
-/* Dark Mode overrides - Applied by JS adding 'dark' class to <html> */
-.dark body {
-    background-color: var(--background-dark);
-    color: #e2e8f0; /* Slate 200 */
-}
-/* Use Slate 900 for card backgrounds in Dark Mode */
-.dark .bg-white, 
-.dark #about, 
-.dark #projects, 
-.dark #contact { 
-    background-color: #1e293b !important; /* Slate 900 */ 
-} 
-/* Use a slightly lighter dark background for the hero section */
-.dark .bg-gray-50, 
-.dark #skills,
-.dark #education { 
-    background-color: #111827 !important; /* Gray 900 */ 
-} 
-.dark .shadow-md { 
-    /* Lighter, more visible shadow for dark mode cards */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.7), 0 2px 4px -2px rgba(0, 0, 0, 0.7); 
+body {
+    font-family: var(--font-sans);
+    transition: background-color 0.5s, color 0.5s; /* Smooth dark mode transition */
 }
 
-/* Section Title Style: Teal underline */
-.section-title {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 8px;
-    font-weight: 800;
-    color: var(--primary-color); /* Neon Teal */
-    /* Add a slight text shadow for a neon effect */
-    text-shadow: 0 0 2px rgba(20, 184, 166, 0.5); 
-}
-.dark .section-title {
-    color: var(--primary-color); /* Keep Teal in dark mode */
-}
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%; /* Center the pseudo-element */
-    transform: translateX(-50%);
-    width: 60%; /* Make the underline shorter and centered */
-    height: 4px;
-    background-color: var(--primary-color);
-    border-radius: 9999px;
-    transition: width 0.3s ease, background-color 0.3s ease;
-    /* Neon glow effect for the underline */
-    box-shadow: 0 0 8px var(--primary-color); 
+/* 2. Hero Section Animations (Butter-Smooth Load) */
+
+/* Initial state (hidden and slightly down) */
+.hero-content.opacity-0 {
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-/* Skill Card Hover Enhancement (3D Pop-out) */
+/* Final state (achieved when classes are removed by actions.js) */
+.hero-content {
+    /* Transition applied to all properties for smooth movement */
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+
+/* 3. General Section Scroll Animations */
+
+/* Initial state for elements that scroll into view (set by actions.js) */
+.fade-out {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Target state for elements that scroll into view (triggered by actions.js) */
+.animate-fadeInUp {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Apply staggered delay to sections */
+#about { transition-delay: 0.1s; }
+#skills { transition-delay: 0.2s; }
+#projects { transition-delay: 0.3s; }
+#contact { transition-delay: 0.4s; }
+
+
+/* 4. Interactive Components */
+
+/* Skill Card Hover Effect (Lift and Subtle Shadow Glow) */
 .skill-card {
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more dramatic transition */
-    border: 1px solid #e5e7eb; /* Default light border */
-}
-.dark .skill-card {
-    border: 1px solid #334155; /* Dark border */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Default shadow */
 }
 
 .skill-card:hover {
-    transform: perspective(1000px) rotateX(2deg) translateY(-8px); /* 3D tilt and lift */
-    box-shadow: 
-        0 20px 30px -10px rgba(124, 58, 237, 0.5), /* Deep Violet shadow */
-        0 0 15px rgba(20, 184, 166, 0.4); /* Neon Teal glow */
-    border-color: var(--secondary-color); /* Deep Violet border on hover */
-    cursor: pointer;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.5), 0 4px 6px -4px rgba(249, 115, 22, 0.3); /* Orange glow on hover */
+    z-index: 10;
 }
 
-/* New Animation: Fade-in on load (Requires JS to apply 'animate-in' class after page load) */
-.fade-in-on-load {
-    opacity: 0;
-    transition: opacity 1s ease-out;
-}
-.animate-in {
-    opacity: 1;
+/* Styling the icons inside skill cards */
+.skill-card .skill-icon {
+    transition: color 0.3s ease;
 }
 
-/* Project Card Hover */
+.skill-card:hover .skill-icon {
+    /* Optionally make the icon slightly brighter on hover */
+    filter: brightness(1.1);
+}
+
+/* Project Card Hover Effect (Subtle Lift and Shadow) */
+.project-card {
+    transition: all 0.4s ease;
+}
+
 .project-card:hover {
-    transform: scale(1.01);
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 20px rgba(20, 184, 166, 0.15); /* Soft teal shadow */
+    /* Using the custom Tailwind class from index.html for the lift: transform hover:translate-y-[-4px] */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+
+/* 5. Utility Overrides (Ensuring high contrast on dark mode) */
+
+.dark .section-title {
+    color: white;
+}
+
+.dark .nav-link:hover {
+    color: var(--color-primary); /* Bright Orange on dark mode hover */
+}
+
+.dark .soft-skill-tag {
+    background-color: #334155; /* Slate-700 for better dark contrast */
+}
+
+/* Ensure the logo maintains its color */
+.dark a.text-cyan-600 {
+    color: var(--color-secondary); /* Cyan 500 */
 }
