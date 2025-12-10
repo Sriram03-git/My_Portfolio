@@ -1,122 +1,130 @@
-// --- Global Theme Logic with Manual Toggle ---
-const root = document.documentElement;
-const THEME_STORAGE_KEY = 'user-theme';
+document.addEventListener('DOMContentLoaded', () => {
 
-// --- Theme Utility Functions ---
-
-/**
- * Applies the 'dark' class to the root element, updates the icon, and saves the preference.
- * @param {boolean} isDark - true for dark theme, false for light theme.
- */
-function applyTheme(isDark) {
-    // 1. Apply or remove the 'dark' class
-    root.classList.toggle('dark', isDark);
-
-    // 2. Update the toggle icon and theme name display
-    updateToggleIcon(isDark);
-    updateThemeName(isDark);
-
-    // 3. Re-create Lucide Icons to ensure correct colors are applied (Crucial fix)
-    if (typeof lucide !== 'undefined') {
-        // Use a short delay to ensure the browser has applied the 'dark' class before redrawing icons
-        setTimeout(() => {
-            lucide.createIcons();
-        }, 50); 
-    }
-}
-
-/**
- * Updates the icon (sun/moon) based on the current theme state.
- * @param {boolean} isDark 
- */
-function updateToggleIcon(isDark) {
-    const iconData = isDark ? 'sun' : 'moon';
+    // --- 1. THEME TOGGLE LOGIC (Dark/Light Mode) ---
     
-    // Update Desktop Icon
-    const iconElement = document.getElementById('toggle-icon');
-    if (iconElement) {
-        iconElement.setAttribute('data-lucide', iconData);
-    }
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const toggleIcon = document.getElementById('toggle-icon');
+    const toggleIconMobile = document.getElementById('toggle-icon-mobile');
 
-    // Update Mobile Icon
-    const iconMobileElement = document.getElementById('toggle-icon-mobile');
-    if (iconMobileElement) {
-        iconMobileElement.setAttribute('data-lucide', iconData);
-    }
-}
+    /**
+     * Toggles the theme between 'light' and 'dark'.
+     * @param {string} theme - The theme to set ('light' or 'dark').
+     */
+    const setTheme = (theme) => {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            if (toggleIcon) toggleIcon.dataset.lucide = 'sun';
+            if (toggleIconMobile) toggleIconMobile.dataset.lucide = 'sun';
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            if (toggleIcon) toggleIcon.dataset.lucide = 'moon';
+            if (toggleIconMobile) toggleIconMobile.dataset.lucide = 'moon';
+        }
+        // Re-render Lucide icons after changing data-lucide attribute
+        lucide.createIcons();
+    };
 
-/**
- * Updates the theme name in the footer.
- * @param {boolean} isDark 
- */
-function updateThemeName(isDark) {
-     const themeName = document.getElementById('current-theme-name');
-     if (themeName) {
-         themeName.textContent = isDark ? 'Dark (Manual)' : 'Light (Manual)';
-     }
-}
+    /** Initializes the theme based on localStorage or OS preference. */
+    const initTheme = () => {
+        const storedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // If a theme is stored, use it. Otherwise, use OS preference.
+        if (storedTheme) {
+            setTheme(storedTheme);
+        } else {
+            setTheme(prefersDark ? 'dark' : 'light');
+        }
+    };
 
-/**
- * Checks localStorage or system preference to set the initial theme.
- */
-function initializeTheme() {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    let isDark;
+    /** Handles the click event for the theme toggle buttons. */
+    const handleThemeToggle = () => {
+        const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    };
 
-    if (savedTheme) {
-        // 1. Use saved preference if available
-        isDark = savedTheme === 'dark';
-    } else {
-        // 2. Fall back to system preference
-        isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        // Save system preference on first load 
-        localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
-    }
+    // Attach event listeners
+    if (themeToggle) themeToggle.addEventListener('click', handleThemeToggle);
+    if (themeToggleMobile) themeToggleMobile.addEventListener('click', handleThemeToggle);
 
-    // Apply the determined theme state
-    applyTheme(isDark);
-}
+    // Initialize the theme on page load
+    initTheme();
 
-/**
- * Toggles the theme state when the button is clicked.
- */
-function toggleTheme() {
-    // Determine the current state based on the class
-    const isCurrentlyDark = root.classList.contains('dark');
-    
-    // Determine the new state
-    const newTheme = isCurrentlyDark ? 'light' : 'dark';
-    const isNewDark = newTheme === 'dark';
 
-    // Apply the new state
-    applyTheme(isNewDark);
-    
-    // Save the user's manual choice
-    localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-}
+    // --- 2. MOBILE MENU LOGIC ---
 
-// --- Event Listeners ---
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // 1. Load the theme based on storage/system
-    initializeTheme();
-
-    // 2. Attach toggle event listeners to both buttons
-    const toggleButton = document.getElementById('theme-toggle');
-    if (toggleButton) {
-        toggleButton.addEventListener('click', toggleTheme);
-    }
-    
-    const toggleButtonMobile = document.getElementById('theme-toggle-mobile');
-    if (toggleButtonMobile) {
-        toggleButtonMobile.addEventListener('click', toggleTheme);
-    }
-
-    // 3. Mobile Menu Placeholder
     const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+    /** Toggles the mobile menu visibility. */
+    const toggleMobileMenu = () => {
+        if (mobileMenu) {
+            mobileMenu.classList.toggle('hidden');
+        }
+    };
+
     if (menuButton) {
-        menuButton.addEventListener('click', function() {
-            console.log("Mobile menu toggled.");
-        });
+        menuButton.addEventListener('click', toggleMobileMenu);
     }
+    
+    // Close mobile menu when a link is clicked (for navigation)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+        });
+    });
+
+
+    // --- 3. BUTTER SMOOTH ANIMATION FOR HERO SECTION ---
+    
+    const heroContent = document.querySelector('.hero-content');
+
+    if (heroContent) {
+        // Use a small delay for a cleaner effect after the page has started rendering
+        setTimeout(() => {
+            // Remove the initial hidden/off-screen classes
+            heroContent.classList.remove('opacity-0', 'translate-y-8');
+        }, 100); 
+    }
+    
+    
+    // --- 4. SCROLL ANIMATIONS (Intersection Observer) ---
+
+    // Function to apply animation when element comes into view
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove the 'fade-out' class and add 'fade-in' class (defined in styles.css)
+                entry.target.classList.add('animate-fadeInUp'); 
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    };
+
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.1 // 10% of element must be visible
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Apply the initial 'fade-out' class to sections we want to animate
+    document.querySelectorAll('#about, #skills, #projects, #contact, #education').forEach(section => {
+        // Only apply if section is not the hero
+        if (section.id !== 'hero') {
+            section.classList.add('fade-out'); // Adds opacity: 0 and initial transform
+            observer.observe(section);
+        }
+    });
+
+    // --- 5. INITIAL ICON RENDERING ---
+    // Ensure Lucide icons are correctly rendered on load
+    lucide.createIcons();
 });
