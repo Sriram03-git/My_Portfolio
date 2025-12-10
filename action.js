@@ -16,12 +16,12 @@ function applyTheme(isDark) {
     updateToggleIcon(isDark);
     updateThemeName(isDark);
 
-    // 3. Re-create Lucide Icons to ensure correct colors are applied
+    // 3. Re-create Lucide Icons to ensure correct colors are applied (Crucial fix)
     if (typeof lucide !== 'undefined') {
-        // Delay this slightly to ensure the class is applied before icons are drawn
+        // Use a short delay to ensure the browser has applied the 'dark' class before redrawing icons
         setTimeout(() => {
             lucide.createIcons();
-        }, 50);
+        }, 50); 
     }
 }
 
@@ -52,7 +52,6 @@ function updateToggleIcon(isDark) {
 function updateThemeName(isDark) {
      const themeName = document.getElementById('current-theme-name');
      if (themeName) {
-         // Displaying '(Manual)' to show the user's choice is overriding the system.
          themeName.textContent = isDark ? 'Dark (Manual)' : 'Light (Manual)';
      }
 }
@@ -70,7 +69,7 @@ function initializeTheme() {
     } else {
         // 2. Fall back to system preference
         isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        // Save system preference on first load so we know what to toggle from
+        // Save system preference on first load 
         localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
     }
 
