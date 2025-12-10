@@ -16,26 +16,24 @@
         :root {
             --primary-color: #2563eb; /* Blue 600 */
             --secondary-color: #eff6ff; /* Blue 50 */
-            --dark-color: #1f2937; /* Gray 800 (Light Mode text) */
-            --dark-bg: #111827; /* Gray 900 (Dark Mode background) */
-            --dark-text: #e5e7eb; /* Gray 200 (Dark Mode text) */
         }
         
         /* Apply smooth transitions to body elements for theme change */
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--dark-color);
+            color: #1f2937; /* Default Gray 800 */
             background-color: white;
             scroll-behavior: smooth;
             transition: all 0.5s ease-in-out; /* Global transition for theme changes */
         }
 
-        /* Dark Mode overrides */
+        /* Dark Mode overrides - Applied by JS adding 'dark' class to <html> */
         .dark body {
-            background-color: var(--dark-bg);
-            color: var(--dark-text);
+            background-color: #111827; /* Gray 900 */
+            color: #e5e7eb; /* Gray 200 */
         }
         .dark .bg-white { background-color: #1f2937; } /* Gray 800 for cards */
+        .dark .bg-gray-50 { background-color: #1f2937; } /* Gray 800 for sections */
         .dark .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5); }
 
         /* Section Title Style */
@@ -70,14 +68,33 @@
     </style>
 
     <script>
-        // Use an event listener to run the icon creation function once the document is ready.
+        // --- System Preference Theme Logic (Autosync) ---
+        const root = document.documentElement;
+
+        function checkSystemTheme() {
+            // Check the current system preference
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            root.classList.toggle('dark', isDark);
+            updateThemeName(isDark);
+        }
+        
+        function updateThemeName(isDark) {
+             const themeName = document.getElementById('current-theme-name');
+             if (themeName) {
+                 themeName.textContent = isDark ? 'Dark (System)' : 'Light (System)';
+             }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
-            // Apply theme on load
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+            
+            // 1. Check theme on initial load
+            checkSystemTheme();
+
+            // 2. Listen for system theme changes (e.g., user changes system settings while the page is open)
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', checkSystemTheme);
         });
     </script>
 </head>
@@ -92,23 +109,19 @@
                 <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition duration-300">Projects</a>
                 <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition duration-300">Contact</a>
                 
-                <button id="theme-toggle-desktop" aria-label="Toggle Dark Mode" class="p-2 rounded-full text-gray-700 dark:text-yellow-400 hover:bg-blue-100 dark:hover:bg-gray-700 transition duration-300">
-                    <i data-lucide="moon" class="w-6 h-6 theme-icon-moon"></i>
-                    <i data-lucide="sun" class="w-6 h-6 theme-icon-sun hidden"></i>
-                </button>
+                <i data-lucide="sun" class="w-6 h-6 text-yellow-400 dark:hidden transition duration-300"></i>
+                <i data-lucide="moon" class="w-6 h-6 text-gray-400 hidden dark:block transition duration-300"></i>
             </div>
             
             <div class="flex items-center space-x-2 sm:hidden">
-                <button id="theme-toggle-mobile" aria-label="Toggle Dark Mode" class="p-2 rounded-full text-gray-700 dark:text-yellow-400 hover:bg-blue-100 dark:hover:bg-gray-700 transition duration-300">
-                    <i data-lucide="moon" class="w-6 h-6 theme-icon-moon"></i>
-                    <i data-lucide="sun" class="w-6 h-6 theme-icon-sun hidden"></i>
-                </button>
+                 <i data-lucide="sun" class="w-6 h-6 text-yellow-400 dark:hidden transition duration-300"></i>
+                <i data-lucide="moon" class="w-6 h-6 text-gray-400 hidden dark:block transition duration-300"></i>
                 <button id="menu-button" class="p-2 rounded-md hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
                     <i data-lucide="menu" class="w-6 h-6 text-blue-600"></i>
                 </button>
             </div>
         </nav>
-        </header>
+    </header>
 
     <main>
         <section id="hero" class="py-20 sm:py-32 bg-blue-50 dark:bg-gray-800 text-center border-b-4 border-blue-600 transition duration-300">
@@ -142,7 +155,7 @@
             </div>
         </section>
 
-        <section id="about" class="py-16 sm:py-24">
+        <section id="about" class="py-16 sm:py-24 bg-white dark:bg-gray-900 transition duration-300">
             <div class="container mx-auto px-4 max-w-4xl">
                 <h2 class="section-title text-3xl sm:text-4xl mb-12 mx-auto text-center">About Me</h2>
 
@@ -213,13 +226,13 @@
             </div>
         </section>
 
-        <section id="projects" class="py-16 sm:py-24">
+        <section id="projects" class="py-16 sm:py-24 bg-white dark:bg-gray-900 transition duration-300">
             <div class="container mx-auto px-4">
                 <h2 class="section-title text-3xl sm:text-4xl mb-12 mx-auto text-center">Projects</h2>
 
                 <div class="space-y-16">
                     
-                    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-2xl p-6 md:p-10 border-t-4 border-blue-600 transition duration-300">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 border-t-4 border-blue-600 transition duration-300">
                         <div class="md:flex md:space-x-8">
                             <div class="flex-shrink-0 mb-4 md:mb-0">
                                 <i data-lucide="monitor-dot" class="w-12 h-12 text-blue-600"></i>
@@ -242,7 +255,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-2xl p-6 md:p-10 border-t-4 border-emerald-600 transition duration-300">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 border-t-4 border-emerald-600 transition duration-300">
                         <div class="md:flex md:space-x-8">
                             <div class="flex-shrink-0 mb-4 md:mb-0">
                                 <i data-lucide="list-checks" class="w-12 h-12 text-emerald-600"></i>
@@ -292,8 +305,4 @@
                             B.Sc. Information Technology
                             <span class="text-sm font-semibold text-white bg-blue-600 px-3 py-1 rounded-full">Completed</span>
                         </h3>
-                        <p class="text-lg text-gray-700 dark:text-gray-300 mt-1">JJ College of Arts and Science, Pudukkottai, India</p>
-                        <div class="flex items-center mt-2">
-                            <img src="media/IMG_20250710_193759.png" alt="jj college logo" class="w-10 h-10 object-contain mr-3 rounded-full">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Graduation: April 2024 (72.91%)</p>
-   
+                        <p class="text-lg text-gray-700 dark:text-gray-300 mt
