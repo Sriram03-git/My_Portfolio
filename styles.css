@@ -1,66 +1,101 @@
-/* Custom Styles & Font Setup - UPDATED TO BLUE */
+/* Custom Styles & Font Setup - UPDATED TO DEEP PURPLE/NEON TEAL */
 :root {
-    --primary-color: #2563eb; /* Blue 600 */
-    --secondary-color: #eff6ff; /* Blue 50 */
+    --primary-color: #14b8a6; /* Neon Teal 500 (Accent) */
+    --secondary-color: #7c3aed; /* Deep Violet 600 (Secondary Accent) */
+    --background-dark: #0b0a16; /* Very Dark Custom Background */
+    --background-light: #f8fafc; /* Slate 50 */
 }
 
 /* Apply smooth transitions to body elements for theme change */
 body {
     font-family: 'Inter', sans-serif;
-    color: #1f2937; /* Default Gray 800 */
-    background-color: white;
+    color: #334155; /* Default Slate 700 */
+    background-color: var(--background-light);
     scroll-behavior: smooth;
     transition: all 0.5s ease-in-out; /* Global transition for theme changes */
 }
 
 /* Dark Mode overrides - Applied by JS adding 'dark' class to <html> */
 .dark body {
-    background-color: #111827; /* Gray 900 */
-    color: #e5e7eb; /* Gray 200 */
+    background-color: var(--background-dark);
+    color: #e2e8f0; /* Slate 200 */
 }
-.dark .bg-white { background-color: #1f2937 !important; } /* Gray 800 for cards */
-.dark .bg-gray-50 { background-color: #1f2937 !important; } /* Gray 800 for sections */
-.dark .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5); }
+/* Use Slate 900 for card backgrounds in Dark Mode */
+.dark .bg-white, 
+.dark #about, 
+.dark #projects, 
+.dark #contact { 
+    background-color: #1e293b !important; /* Slate 900 */ 
+} 
+/* Use a slightly lighter dark background for the hero section */
+.dark .bg-gray-50, 
+.dark #skills,
+.dark #education { 
+    background-color: #111827 !important; /* Gray 900 */ 
+} 
+.dark .shadow-md { 
+    /* Lighter, more visible shadow for dark mode cards */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.7), 0 2px 4px -2px rgba(0, 0, 0, 0.7); 
+}
 
-/* Section Title Style */
+/* Section Title Style: Teal underline */
 .section-title {
     position: relative;
     display: inline-block;
     padding-bottom: 8px;
     font-weight: 800;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Neon Teal */
+    /* Add a slight text shadow for a neon effect */
+    text-shadow: 0 0 2px rgba(20, 184, 166, 0.5); 
+}
+.dark .section-title {
+    color: var(--primary-color); /* Keep Teal in dark mode */
 }
 .section-title::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%; /* Center the pseudo-element */
+    transform: translateX(-50%);
+    width: 60%; /* Make the underline shorter and centered */
     height: 4px;
     background-color: var(--primary-color);
     border-radius: 9999px;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    /* Neon glow effect for the underline */
+    box-shadow: 0 0 8px var(--primary-color); 
 }
 
-/* Skill Card Hover Enhancement (Butter Smoothness) */
+/* Skill Card Hover Enhancement (3D Pop-out) */
 .skill-card {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more dramatic transition */
+    border: 1px solid #e5e7eb; /* Default light border */
 }
+.dark .skill-card {
+    border: 1px solid #334155; /* Dark border */
+}
+
 .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2), 0 4px 6px -2px rgba(37, 99, 235, 0.1);
+    transform: perspective(1000px) rotateX(2deg) translateY(-8px); /* 3D tilt and lift */
+    box-shadow: 
+        0 20px 30px -10px rgba(124, 58, 237, 0.5), /* Deep Violet shadow */
+        0 0 15px rgba(20, 184, 166, 0.4); /* Neon Teal glow */
+    border-color: var(--secondary-color); /* Deep Violet border on hover */
+    cursor: pointer;
+}
+
+/* New Animation: Fade-in on load (Requires JS to apply 'animate-in' class after page load) */
+.fade-in-on-load {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+.animate-in {
+    opacity: 1;
+}
+
+/* Project Card Hover */
+.project-card:hover {
+    transform: scale(1.01);
     border-color: var(--primary-color);
-}
-
-/* Specific Dark Mode fixes to ensure background changes take effect */
-.dark #about {
-    background-color: #111827 !important;
-}
-
-.dark #projects {
-    background-color: #111827 !important;
-}
-
-.dark #contact {
-    background-color: #111827 !important;
+    box-shadow: 0 10px 20px rgba(20, 184, 166, 0.15); /* Soft teal shadow */
 }
