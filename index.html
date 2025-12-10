@@ -1,5 +1,14 @@
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sriram Thiruselvam - Java Full Stack Developer</title>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="antialiased">
@@ -7,6 +16,7 @@
     <header class="sticky top-0 z-50 bg-white dark:bg-slate-900 shadow-xl transition duration-300">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             <a href="#hero" class="text-2xl font-bold text-violet-600 transition duration-300">🏆 Practice Makes Perfect 🥇.</a>
+            
             <div class="space-x-4 hidden sm:flex items-center">
                 <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-teal-500 transition duration-300">About</a>
                 <a href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-teal-500 transition duration-300">Skills</a>
@@ -63,6 +73,20 @@
 
         <section id="about" class="py-16 sm:py-24 bg-white dark:bg-gray-900 transition duration-500">
             <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="section-title text-3xl sm:text-4xl mb-12 mx-auto text-center">About Me</h2>
+
+                <div class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 transition duration-500">
+                    <p>
+                        I am a highly motivated B.Sc. Information Technology graduate (2024) from JJ College of Arts and Science. My foundation is built on a strong academic background (72.91%) combined with intensive practical training in Full Stack Development.
+                    </p>
+                    <p>
+                        I recently completed a comprehensive Java Full Stack Development certification at ACTE Technologies, where I gained hands-on expertise in backend logic using Java and Spring Boot, robust database management with PostgreSQL, and creating engaging interfaces with HTML, CSS, and JavaScript.
+                    </p>
+                    <p>
+                        My commitment lies in solving real-world problems through code, demonstrated by my final year project on secure cloud access control using smart contracts. I am a Quick Learner, thrive in Teamwork environments, and am Available for immediate joining.
+                    </p>
+                </div>
+
                 <div class="mt-12 text-center">
                     <h3 class="text-2xl font-bold text-teal-500 dark:text-teal-400 mb-4 transition duration-500">Soft Skills</h3>
                     <div class="flex flex-wrap justify-center gap-4 text-gray-700 dark:text-gray-300 transition duration-500">
@@ -92,7 +116,27 @@
                         <i data-lucide="coffee" class="w-10 h-10 mx-auto text-red-500 mb-3"></i>
                         <p class="font-semibold text-lg text-gray-900 dark:text-white">Java (Core)</p>
                     </div>
+                    <div class="skill-card p-6 bg-white dark:bg-gray-700 rounded-xl text-center shadow-md">
+                        <i data-lucide="leaf" class="w-10 h-10 mx-auto text-green-600 mb-3"></i>
+                        <p class="font-semibold text-lg text-gray-900 dark:text-white">Spring Boot</p>
                     </div>
+                    <div class="skill-card p-6 bg-white dark:bg-gray-700 rounded-xl text-center shadow-md">
+                        <i data-lucide="database" class="w-10 h-10 mx-auto text-blue-500 mb-3"></i>
+                        <p class="font-semibold text-lg text-gray-900 dark:text-white">PostgreSQL</p>
+                    </div>
+                    <div class="skill-card p-6 bg-white dark:bg-gray-700 rounded-xl text-center shadow-md">
+                        <i data-lucide="code" class="w-10 h-10 mx-auto text-orange-500 mb-3"></i>
+                        <p class="font-semibold text-lg text-gray-900 dark:text-white">HTML5 & CSS</p>
+                    </div>
+                    <div class="skill-card p-6 bg-white dark:bg-gray-700 rounded-xl text-center shadow-md">
+                        <i data-lucide="square-code" class="w-10 h-10 mx-auto text-yellow-500 mb-3"></i>
+                        <p class="font-semibold text-lg text-gray-900 dark:text-white">JavaScript</p>
+                    </div>
+                    <div class="skill-card p-6 bg-white dark:bg-gray-700 rounded-xl text-center shadow-md">
+                        <i data-lucide="git-fork" class="w-10 h-10 mx-auto text-gray-700 dark:text-gray-300 mb-3"></i>
+                        <p class="font-semibold text-lg text-gray-900 dark:text-white">Git/GitHub</p>
+                    </div>
+                </div>
 
                 <p class="text-center mt-8 text-gray-600 dark:text-gray-400">Additional Proficiencies: RESTful APIs, SQL, Maven/Gradle, Eclipse/VS Code.</p>
             </div>
@@ -197,6 +241,9 @@
                     </p>
 
                     <form action="https://formsubmit.co/sriramoffice03@gmail.com" method="POST" class="space-y-4">
+                        <input type="hidden" name="_subject" value="New Portfolio Contact from Sriram T.">
+                        <input type="hidden" name="_autoresponse" value="Thank you for reaching out to Sriram Thiruselvam! Your message has been received and he will respond as soon as possible.">
+                        
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
                             <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 p-3 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-300" placeholder="Your Name">
@@ -257,19 +304,6 @@
         </div>
     </footer>
 
-    <script>
-        // Inject a small script at the end of the body to run the animation.
-        // This makes the hero section smoothly fade in after the page loads.
-        document.addEventListener("DOMContentLoaded", function() {
-            const heroSection = document.getElementById('hero');
-            if (heroSection) {
-                // Apply the 'animate-in' class after a short delay (e.g., 100ms)
-                setTimeout(() => {
-                    heroSection.classList.add('animate-in');
-                }, 100); 
-            }
-        });
-    </script>
-    <script src="action.js"></script>
+    <script src="actions.js"></script>
 </body>
 </html>
