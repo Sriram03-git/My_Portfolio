@@ -1,0 +1,66 @@
+/* Custom Styles & Font Setup - UPDATED TO BLUE */
+:root {
+    --primary-color: #2563eb; /* Blue 600 */
+    --secondary-color: #eff6ff; /* Blue 50 */
+}
+
+/* Apply smooth transitions to body elements for theme change */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #1f2937; /* Default Gray 800 */
+    background-color: white;
+    scroll-behavior: smooth;
+    transition: all 0.5s ease-in-out; /* Global transition for theme changes */
+}
+
+/* Dark Mode overrides - Applied by JS adding 'dark' class to <html> */
+.dark body {
+    background-color: #111827; /* Gray 900 */
+    color: #e5e7eb; /* Gray 200 */
+}
+.dark .bg-white { background-color: #1f2937 !important; } /* Gray 800 for cards */
+.dark .bg-gray-50 { background-color: #1f2937 !important; } /* Gray 800 for sections */
+.dark .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5); }
+
+/* Section Title Style */
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+}
+
+/* Skill Card Hover Enhancement (Butter Smoothness) */
+.skill-card {
+    transition: all 0.3s ease-in-out;
+}
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2), 0 4px 6px -2px rgba(37, 99, 235, 0.1);
+    border-color: var(--primary-color);
+}
+
+/* Specific Dark Mode fixes to ensure background changes take effect */
+.dark #about {
+    background-color: #111827 !important;
+}
+
+.dark #projects {
+    background-color: #111827 !important;
+}
+
+.dark #contact {
+    background-color: #111827 !important;
+}
