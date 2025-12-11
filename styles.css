@@ -1,16 +1,17 @@
 /* Base Variables & Reset */
 :root {
     /* Light Mode Colors */
-    --primary-color: #007bff; 
+    --primary-color: #007bff; /* Blue for buttons/highlights */
     --text-color: #333;
     --background-color: #f4f7fa;
     --card-background: #ffffff;
     --border-color: #e0e0e0;
 }
 
+/* Dark Mode and System Dark Mode */
 .dark-mode, .system-mode[data-theme="dark"] {
     /* Dark Mode Colors */
-    --primary-color: #1a73e8; 
+    --primary-color: #1a73e8; /* Slightly brighter blue for contrast */
     --text-color: #e8e8e8;
     --background-color: #1c1c1c;
     --card-background: #2a2a2a;
@@ -54,7 +55,7 @@ h2 {
     margin-bottom: 40px;
     text-align: center;
     color: var(--primary-color);
-    transition: font-size 0.3s; /* For responsive transitions */
+    transition: font-size 0.3s;
 }
 
 /* --- Header & Navigation --- */
@@ -132,7 +133,7 @@ header {
     padding: 80px 0;
     text-align: left;
     background: linear-gradient(135deg, var(--background-color), var(--card-background));
-    min-height: 60vh; /* FIX: Reduced for better initial visibility */
+    min-height: 60vh; /* Fixed height for better initial content visibility */
     display: flex;
     align-items: center;
 }
@@ -148,14 +149,14 @@ header {
     margin-bottom: 10px;
     color: var(--text-color);
     text-align: left;
-    transition: font-size 0.3s; /* For responsive transitions */
+    transition: font-size 0.3s;
 }
 
 .hero-text h3 {
     font-size: 1.8em;
     color: var(--primary-color);
     margin-bottom: 20px;
-    transition: font-size 0.3s; /* For responsive transitions */
+    transition: font-size 0.3s;
 }
 
 .profile-pic {
@@ -165,7 +166,7 @@ header {
     object-fit: cover;
     border: 5px solid var(--primary-color);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0; /* Ensures it doesn't shrink on larger screens */
+    flex-shrink: 0;
 }
 
 .social-links {
@@ -183,7 +184,8 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* --- SCROLL ANIMATION CSS (Already functional) --- */
+/* --- SCROLL ANIMATION CSS --- */
+/* Initial state for JavaScript to observe and reveal */
 .section {
     opacity: 0;
     transform: translateY(50px);
@@ -215,10 +217,33 @@ header {
     transform: translateY(-5px);
 }
 
+.skill-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.skill-category i {
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: var(--primary-color);
+}
+
 /* Java Coffee Cup Icon Styling */
 .skill-category li .fa-coffee {
     color: #964B00; /* Coffee Brown color */
 }
+
 
 /* --- Education Section --- */
 .education-item {
@@ -248,14 +273,110 @@ header {
     object-fit: contain;
 }
 
+.edu-details h3 {
+    margin-top: 0;
+    color: var(--text-color);
+}
+
+.edu-details .dates {
+    font-style: italic;
+    color: #888;
+}
+
 /* --- Projects Section --- */
+.projects-section h2 {
+    margin-bottom: 20px;
+}
+
 .project-card {
-    /* ... existing styles ... */
+    background: var(--card-background);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s;
+}
+
+.project-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.project-card .tech-stack {
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.project-card ul {
+    margin-left: 20px;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.project-link:hover {
+    background-color: #0056b3;
 }
 
 /* --- Contact Section / Form --- */
+.contact-section {
+    text-align: center;
+}
+
+/* This targets the main form container (Fix for missing design) */
 #contact-form {
-    /* ... existing styles ... */
+    max-width: 600px;
+    margin: 30px auto 0;
+    display: grid; 
+    gap: 15px;
+    padding: 20px;
+    background: var(--card-background); 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* This targets all input and textarea elements inside the form (Fix for missing design) */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1em;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+#contact-form textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
 }
 
 /* --- Footer --- */
@@ -280,8 +401,8 @@ footer {
     
     /* 1. Hero Section Stacking */
     .hero {
-        padding: 60px 0; /* Slightly less padding */
-        min-height: auto; /* Let content dictate height */
+        padding: 60px 0; 
+        min-height: auto; 
     }
 
     .hero-content {
@@ -291,7 +412,7 @@ footer {
     }
     
     .hero-image-container {
-        /* Ensures image takes up the correct space */
+        /* Ensures image goes to the top in the stacked view */
         order: -1; 
     }
 
@@ -331,14 +452,9 @@ footer {
     
     /* 1. Header & Navigation */
     header {
-        padding: 10px 0; /* More compact header */
+        padding: 10px 0; 
     }
     
-    .nav-container {
-        /* Align logo and theme button properly when nav is hidden */
-        justify-content: space-between;
-    }
-
     .nav-menu {
         display: none; /* Hide nav links on small mobile */
     }
@@ -346,29 +462,42 @@ footer {
     .logo {
         font-size: 1.4em;
     }
+    
+    #theme-toggle {
+        padding: 6px 10px;
+    }
 
     /* 2. General Headings and Padding */
     h2 {
-        font-size: 2em; /* Smaller main heading */
+        font-size: 2em; 
         margin-bottom: 25px;
     }
     
     .section {
-        padding: 40px 0; /* Reduced padding for more content */
+        padding: 40px 0;
     }
 
     /* 3. Hero Section */
+    .hero {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
     .hero-text h2 {
-        font-size: 2.2em; /* Significantly smaller name */
+        font-size: 2.2em; 
     }
 
     .hero-text h3 {
-        font-size: 1.4em; /* Significantly smaller title */
+        font-size: 1.4em; 
     }
 
     .profile-pic {
-        width: 150px; /* Smaller profile pic */
+        width: 150px; 
         height: 150px;
+    }
+    
+    .hero-text {
+        padding: 0 10px;
     }
 
     /* 4. Skills Grid reduced to 1 column */
@@ -385,10 +514,15 @@ footer {
     .logo-container {
         margin: 0 auto 15px; /* Center logo on top of text */
     }
-
+    
     /* 6. Projects & Contact */
     .project-card {
         padding: 20px;
+    }
+    
+    #contact-form {
+        margin: 20px 10px 0; /* Ensures form doesn't touch screen edges */
+        padding: 15px;
     }
     
     .whatsapp-float {
@@ -398,30 +532,4 @@ footer {
         right: 15px;
         font-size: 22px;
     }
-}
-/* --- Contact Section / Form --- */
-.contact-section {
-    text-align: center;
-}
-
-#contact-form {
-    max-width: 600px;
-    margin: 30px auto 0;
-    display: grid; /* Makes inputs stack neatly */
-    gap: 15px;
-    padding: 20px;
-    background: var(--card-background); /* Gives the form its background */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#contact-form input,
-#contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color); /* The border around the boxes */
-    border-radius: 4px;
-    font-size: 1em;
-    background: var(--background-color);
-    color: var(--text-color);
 }
