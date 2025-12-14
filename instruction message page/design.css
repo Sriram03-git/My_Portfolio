@@ -74,3 +74,127 @@ h1 {
     background-color: #1e7e34;
     transform: translateY(0);
 }
+
+/* -------------------------------------------
+   1. Base Styles and Typography (Mobile First)
+   ------------------------------------------- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    /* Center content vertically and horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+    padding: 10px; /* Small padding for edge clearance on all devices */
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%; /* Take full width of the viewport */
+    max-width: 900px; /* Allow it to grow on large screens, but limit it */
+    padding: 0;
+}
+
+.message-box {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Reduced padding for mobile screens */
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.5em; /* Smaller font on mobile */
+}
+
+/* -------------------------------------------
+   2. Instruction Box Styling
+   ------------------------------------------- */
+.instruction-text {
+    background-color: #e9f7ff;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.instruction-text p {
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+.wait-note {
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 10px !important;
+}
+
+/* -------------------------------------------
+   3. Button Styling
+   ------------------------------------------- */
+#viewProjectButton {
+    background-color: #28a745;
+    color: white;
+    width: 90%; /* Button takes up most of the width on mobile */
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.0em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+#viewProjectButton:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#viewProjectButton:active {
+    background-color: #1e7e34;
+    transform: translateY(0);
+}
+
+/* -------------------------------------------
+   4. Media Queries for Tablet and Desktop Views
+   ------------------------------------------- */
+
+/* Tablet View (Screens wider than 600px) */
+@media (min-width: 600px) {
+    .message-box {
+        padding: 30px; /* Restore desktop padding */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Increase header size */
+    }
+
+    .instruction-text {
+        padding: 20px;
+        font-size: 1.0em;
+    }
+    
+    #viewProjectButton {
+        width: auto; /* Button size adjusts naturally */
+        padding: 12px 40px;
+        font-size: 1.1em;
+    }
+}
+
+/* Desktop View (Screens wider than 900px - optional for further polish) */
+@media (min-width: 900px) {
+    .message-box {
+        padding: 40px;
+    }
+}
