@@ -1,0 +1,76 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.message-box {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.instruction-text {
+    background-color: #e9f7ff;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.instruction-text p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.wait-note {
+    color: #dc3545; /* Red color for emphasis */
+    font-weight: bold;
+    margin-top: 15px !important;
+}
+
+#viewProjectButton {
+    background-color: #28a745; /* Green button */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s, transform 0.2s;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+#viewProjectButton:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#viewProjectButton:active {
+    background-color: #1e7e34;
+    transform: translateY(0);
+}
