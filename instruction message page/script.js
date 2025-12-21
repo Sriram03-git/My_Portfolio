@@ -1,4 +1,3 @@
-// *** REPLACE THIS WITH YOUR ACTUAL PROJECT LINK ***
 const projectLink = "https://trip-project-0ufy.onrender.com/"; 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,4 +10,5 @@ document.addEventListener('DOMContentLoaded', function() {
         // Optionally: You can close this page after the click
         // window.close(); 
     });
+
 });
